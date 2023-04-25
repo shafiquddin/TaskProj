@@ -42,6 +42,6 @@ ul {
   gap: 20px;
 }
 .highlighted {
-  background-color: lightcyan;
+  background-color: lightcoral;
 }
 </style>
