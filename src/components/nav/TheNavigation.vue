@@ -9,7 +9,18 @@
           <router-link to="/cardsPage">Cards</router-link>
         </li>
         <li>
-          <router-link to="/cardsPage">Setting</router-link>
+          <a @click="switchTheme">{{
+            themeStyle === "Light" ? "Dark Theme" : "Light Theme"
+          }}</a>
+        </li>
+        <li class="search">
+          <input
+            type="text"
+            placeholder="Search..."
+            v-model.trim="searchText"
+            @focus="getSearch"
+            @change="getChangeText"
+          />
         </li>
       </ul>
     </nav>
@@ -18,10 +29,29 @@
 
 <script>
 export default {
-  emits: ["set-page"],
+  props: ["themeStyle"],
+  emits: ["set-page", "switch-mode"],
+  data() {
+    return {
+      searchText: "",
+    };
+  },
   methods: {
     setActivePage(page) {
       this.$emit("set-page", page);
+    },
+    switchTheme() {
+      this.$emit("switch-mode");
+    },
+    getSearch() {
+      this.$router.push("/CardsPage");
+    },
+  },
+  watch: {
+    searchText(value) {
+      if (value) {
+        this.$store.dispatch("searchText", value);
+      }
     },
   },
 };
@@ -68,5 +98,18 @@ a.active {
   color: #f1a80a;
   border-color: #f1a80a;
   background-color: #1a037e;
+}
+nav li.search {
+  margin-left: auto;
+}
+
+nav form {
+  display: flex;
+}
+
+nav input[type="text"] {
+  padding: 5px;
+  border: none;
+  border-radius: 3px;
 }
 </style>

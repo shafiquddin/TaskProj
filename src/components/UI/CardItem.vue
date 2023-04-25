@@ -13,10 +13,9 @@
 <script>
 export default {
   props: ["id", "header", "description"],
-  emits: ["delete-user"],
   methods: {
     getDeleteUser() {
-      this.$emit("delete-user", this.id);
+      this.$store.dispatch("getDelete", this.id);
     },
   },
 };

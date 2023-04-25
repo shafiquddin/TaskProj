@@ -9,7 +9,7 @@
           <th>Name</th>
           <th>Category</th>
           <th>Description</th>
-          <th>View</th>
+          <th>WebSite</th>
         </tr>
       </thead>
       <tbody>
@@ -18,7 +18,7 @@
           <td>{{ item.Category }}</td>
           <td>{{ item.Description }}</td>
           <td>
-            <a href="item.link" target="_blank">More</a>
+            <button @click="getJoin(item.Link)">Click</button>
           </td>
         </tr>
       </tbody>
@@ -48,13 +48,14 @@ export default {
         .catch((error) => console.log(error));
       this.isLoading = false;
     },
+    getJoin(Url) {
+      window.open(Url, "_blank");
+    },
   },
   created() {
     if (JSON.parse(localStorage.getItem("storedData")) !== null) {
       this.items = JSON.parse(localStorage.getItem("storedData")).entries;
-      console.log("storage not null");
     } else {
-      console.log("storage null");
       this.fetchData();
     }
   },
@@ -64,8 +65,8 @@ export default {
 table {
   border-collapse: collapse;
   width: 100%;
-  max-width: 900px;
-  margin: 0 auto;
+  max-width: 1000px;
+  margin: 10px auto;
   font-family: Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
@@ -101,6 +102,19 @@ th {
   table caption {
     font-size: 16px;
   }
+}
+table button {
+  background-color: #11005c;
+  padding: 8px 12px;
+  color: #fff;
+  border-color: #f1a80a;
+  cursor: pointer;
+  transition: all 0.3s ease-in;
+  text-transform: uppercase;
+}
+table button:hover {
+  background-color: #f1a80a;
+  border-color: #11005c;
 }
 .table-wrapper {
   width: 100%;
