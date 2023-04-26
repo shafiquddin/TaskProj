@@ -7,7 +7,7 @@
       :id="item.id"
       :header="item.header"
       :description="item.decription"
-      v-bind:class="{ highlighted: highlightCard.includes(item) }"
+      v-bind:class="{ highlighted: this.highlightCard.includes(item) }"
     ></card-item>
   </ul>
 </template>

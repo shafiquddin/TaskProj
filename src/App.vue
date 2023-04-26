@@ -58,5 +58,6 @@ export default {
 
 html {
   font-family: sans-serif;
+  background-color: #f2f2f2;
 }
 </style>

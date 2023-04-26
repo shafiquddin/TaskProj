@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 const store = createStore({
   state() {
     return {
+      items: [],
       cardData: [
         {
           id: 1,
@@ -56,6 +57,9 @@ const store = createStore({
     };
   },
   mutations: {
+    fetchData(state, payload) {
+      state.items = payload;
+    },
     delete(state, payload) {
       state.cardData = state.cardData.filter((item) => item.id !== payload);
     },
@@ -66,6 +70,16 @@ const store = createStore({
     },
   },
   actions: {
+    async fetchRequest(context) {
+      const response = await fetch("https://api.publicapis.org/entries");
+      const responseData = await response.json();
+      if (!response.ok) {
+        const error = new Error(responseData.message || "failed to fetch");
+        throw error;
+      }
+      context.commit("fetchData", responseData.entries);
+    },
+
     getDelete(context, payload) {
       context.commit("delete", payload);
     },
@@ -74,6 +88,12 @@ const store = createStore({
     },
   },
   getters: {
+    items(state) {
+      return state.items;
+    },
+    hasItem(state) {
+      return state.items && state.items.length > 0;
+    },
     cardData(state) {
       return state.cardData;
     },
