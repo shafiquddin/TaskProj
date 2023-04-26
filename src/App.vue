@@ -52,27 +52,11 @@ export default {
 <style>
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 html {
   font-family: sans-serif;
-}
-
-body {
-  margin: 0;
-}
-.slide-fade-enter-to,
-.slide-fade-leave-from {
-  opacity: 1;
-}
-.slide-fade-enter-active {
-  transition: opacity 0.3s ease-out;
-}
-.slide-fade-Leave-active {
-  transition: opacity 0.3s ease-in;
-}
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  opacity: 0;
 }
 </style>

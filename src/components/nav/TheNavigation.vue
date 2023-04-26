@@ -13,16 +13,16 @@
             themeStyle === "Light" ? "Dark Theme" : "Light Theme"
           }}</a>
         </li>
-        <li class="search">
-          <input
-            type="text"
-            placeholder="Search..."
-            v-model.trim="searchText"
-            @focus="getSearch"
-            @change="getChangeText"
-          />
-        </li>
       </ul>
+      <div class="search">
+        <input
+          type="text"
+          placeholder="Search..."
+          v-model.trim="searchText"
+          @focus="getSearch"
+          @change="getChangeText"
+        />
+      </div>
     </nav>
   </header>
 </template>
@@ -59,7 +59,7 @@ export default {
 
 <style scoped>
 header {
-  width: 100%;
+  /* width: 100%; */
   height: 5rem;
   background-color: #11005c;
 }
@@ -99,8 +99,14 @@ a.active {
   border-color: #f1a80a;
   background-color: #1a037e;
 }
-nav li.search {
-  margin-left: auto;
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+nav div.search {
+  padding-right: 10px;
 }
 
 nav form {
@@ -111,5 +117,25 @@ nav input[type="text"] {
   padding: 5px;
   border: none;
   border-radius: 3px;
+}
+@media screen and (max-width: 720px) {
+  li {
+    margin: 0 10px;
+  }
+  a {
+    padding: 0.5rem 1rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  nav {
+    flex-direction: column;
+    padding: 10px;
+  }
+  nav div.search {
+    margin-top: 10px;
+  }
+  header {
+    height: 7rem;
+  }
 }
 </style>

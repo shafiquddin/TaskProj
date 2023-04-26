@@ -2,7 +2,7 @@
   <div v-if="isLoading">
     <base-spinner></base-spinner>
   </div>
-  <div v-else>
+  <div class="table-container" v-else>
     <table>
       <thead>
         <tr>
@@ -62,10 +62,12 @@ export default {
 };
 </script>
 <style scoped>
+.table-container {
+  max-width: 100%;
+}
 table {
   border-collapse: collapse;
-  width: 100%;
-  max-width: 1000px;
+  max-width: 90%;
   margin: 10px auto;
   font-family: Arial, sans-serif;
   font-size: 16px;
@@ -88,6 +90,11 @@ th {
   border-top: 1px solid #ddd;
 }
 
+@media screen and (max-width: 735px) {
+  .table-container {
+    overflow-x: auto;
+  }
+}
 @media screen and (max-width: 600px) {
   table {
     font-size: 12px;
